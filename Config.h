@@ -16,7 +16,7 @@
 // CONTROLLER ======================================================================================================================
 
 // PINMAP ------------------------------------------------- see https://onstep.groups.io/g/main/wiki/Configuration_Controller#PINMAP
-#define PINMAP                        OFF //    OFF, Choose from: MiniPCB, MiniPCB2, MaxPCB2, MaxESP3, CNC3, STM32Blue,      <-Req'd
+#define PINMAP                    MaxESP4 //    OFF, Choose from: MiniPCB, MiniPCB2, MaxPCB2, MaxESP3, CNC3, STM32Blue,      <-Req'd
                                           //         MaxSTM3, FYSETC_S6_2, etc.  Other boards and more info. in ~/src/Constants.h
 
 // SERIAL PORT COMMAND CHANNELS --------------------- see https://onstep.groups.io/g/main/wiki/Configuration_Controller#SERIAL_PORTS
@@ -51,29 +51,29 @@
 // Typically: A4988, DRV8825, LV8729, S109, TMC2130, TMC5160, TMC2209, etc.
 
 // AXIS1 RA/AZM -------------------------------------------------------- see https://onstep.groups.io/g/main/wiki/Configuration_Axes
-#define AXIS1_DRIVER_MODEL            OFF //    OFF, Enter motor driver model (above) in both axes to activate the mount.    <-Often
+#define AXIS1_DRIVER_MODEL        TMC2209 //    OFF, Enter motor driver model (above) in both axes to activate the mount.    <-Often
 
 // If runtime axis settings are enabled changes in the section below may be ignored unless you reset to defaults:
 // \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ 
-#define AXIS1_STEPS_PER_DEGREE      12800 //  12800, n. Number of steps per degree:                                          <-Req'd
+#define AXIS1_STEPS_PER_DEGREE       7680 //  12800, n. Number of steps per degree:                                          <-Req'd
                                           //         n = (stepper_steps * micro_steps * overall_gear_reduction)/360.0
 #define AXIS1_REVERSE                 OFF //    OFF, ON Reverses movement direction, or reverse wiring instead to correct.   <-Often
 #define AXIS1_LIMIT_MIN              -180 //   -180, n. Where n= -90..-360 (degrees.) Minimum "Hour Angle" or Azimuth.        Adjust
 #define AXIS1_LIMIT_MAX               180 //    180, n. Where n=  90.. 360 (degrees.) Maximum "Hour Angle" or Azimuth.        Adjust
 
-#define AXIS1_DRIVER_MICROSTEPS       OFF //    OFF, n. Microstep mode when tracking.                                        <-Req'd
+#define AXIS1_DRIVER_MICROSTEPS        32 //    OFF, n. Microstep mode when tracking.                                        <-Req'd
 #define AXIS1_DRIVER_MICROSTEPS_GOTO  OFF //    OFF, n. Microstep mode used during slews. OFF uses _DRIVER_MICROSTEPS.        Option
 
 // for TMC2130, TMC5160, TMC2209, TMC2226 STEP/DIR driver models:
 #define AXIS1_DRIVER_IHOLD            OFF //    OFF, n, (mA.) Current during standstill. OFF uses IRUN/2.0                    Option
-#define AXIS1_DRIVER_IRUN             OFF //    OFF, n, (mA.) Current during tracking, appropriate for stepper/driver/etc.    Option
+#define AXIS1_DRIVER_IRUN             700 //    OFF, n, (mA.) Current during tracking, appropriate for stepper/driver/etc.    Option
 #define AXIS1_DRIVER_IGOTO            OFF //    OFF, n, (mA.) Current during slews. OFF uses IRUN.                            Option
 // /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /
 
 #define AXIS1_DRIVER_STATUS           OFF //    OFF, ON, HIGH, or LOW.  For driver status info/fault detection.               Option
 
 #define AXIS1_DRIVER_DECAY            OFF //    OFF, Tracking decay mode default override. TMC default is STEALTHCHOP.        Infreq
-#define AXIS1_DRIVER_DECAY_GOTO       OFF //    OFF, Decay mode goto default override. TMC default is SPREADCYCLE.            Infreq
+#define AXIS1_DRIVER_DECAY_GOTO       STEALTHCHOP //    OFF, Decay mode goto default override. TMC default is SPREADCYCLE.            Infreq
 
 #define AXIS1_POWER_DOWN              OFF //    OFF, ON Powers off 30sec after movement stops or 10min after last<=1x guide.  Infreq
 
@@ -86,29 +86,29 @@
                                           //         |HYST(n) Where n=0..1023 (ADU) for +/- Hystersis range.
 
 // AXIS2 DEC/ALT ------------------------------------------------------- see https://onstep.groups.io/g/main/wiki/Configuration_Axes
-#define AXIS2_DRIVER_MODEL            OFF //    OFF, Enter motor driver model (above) in both axes to activate the mount.    <-Often
+#define AXIS2_DRIVER_MODEL        TMC2209 //    OFF, Enter motor driver model (above) in both axes to activate the mount.    <-Often
 
 // If runtime axis settings are enabled changes in the section below may be ignored unless you reset to defaults:
 // \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/
-#define AXIS2_STEPS_PER_DEGREE      12800 //  12800, n. Number of steps per degree:                                          <-Req'd
+#define AXIS2_STEPS_PER_DEGREE       7680 //  12800, n. Number of steps per degree:                                          <-Req'd
                                           //         n = (stepper_steps * micro_steps * overall_gear_reduction)/360.0
-#define AXIS2_REVERSE                 OFF //    OFF, ON Reverses movement direction, or reverse wiring instead to correct.   <-Often
+#define AXIS2_REVERSE                  ON //    OFF, ON Reverses movement direction, or reverse wiring instead to correct.   <-Often
 #define AXIS2_LIMIT_MIN               -90 //    -90, n. Where n=-90..0 (degrees.) Minimum allowed Declination or Altitude.    Infreq
 #define AXIS2_LIMIT_MAX                90 //     90, n. Where n=0..90 (degrees.) Maximum allowed Declination or Altitude.     Infreq
 
-#define AXIS2_DRIVER_MICROSTEPS       OFF //    OFF, n. Microstep mode when tracking.                                        <-Req'd
+#define AXIS2_DRIVER_MICROSTEPS        32 //    OFF, n. Microstep mode when tracking.                                        <-Req'd
 #define AXIS2_DRIVER_MICROSTEPS_GOTO  OFF //    OFF, n. Microstep mode used during slews. OFF uses _DRIVER_MICROSTEPS.        Option
 
 // for TMC2130, TMC5160, TMC2209, TMC2226 STEP/DIR driver models:
 #define AXIS2_DRIVER_IHOLD            OFF //    OFF, n, (mA.) Current during standstill. OFF uses IRUN/2.0                    Option
-#define AXIS2_DRIVER_IRUN             OFF //    OFF, n, (mA.) Current during tracking, appropriate for stepper/driver/etc.    Option
+#define AXIS2_DRIVER_IRUN             700 //    OFF, n, (mA.) Current during tracking, appropriate for stepper/driver/etc.    Option
 #define AXIS2_DRIVER_IGOTO            OFF //    OFF, n, (mA.) Current during slews. OFF uses IRUN.                            Option
 // /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /
 
 #define AXIS2_DRIVER_STATUS           OFF //    OFF, ON, HIGH, or LOW.  Polling for driver status info/fault detection.       Option
 
 #define AXIS2_DRIVER_DECAY            OFF //    OFF, Tracking decay mode default override. TMC default is STEALTHCHOP.        Infreq
-#define AXIS2_DRIVER_DECAY_GOTO       OFF //    OFF, Decay mode goto default override. TMC default is SPREADCYCLE.            Infreq
+#define AXIS2_DRIVER_DECAY_GOTO       STEALTHCHOP //    OFF, Decay mode goto default override. TMC default is SPREADCYCLE.            Infreq
 
 #define AXIS2_POWER_DOWN              OFF //    OFF, ON Powers off 30sec after movement stops or 10min after last<=1x guide.  Option
 
@@ -141,13 +141,13 @@
 
 // STATUS ------------------------------------------------------ see https://onstep.groups.io/g/main/wiki/Configuration_Mount#STATUS
 #define STATUS_MOUNT_LED              OFF //    OFF, ON Flashes proportional to rate of movement or solid on for slews.       Option
-#define STATUS_BUZZER                 OFF //    OFF, ON, n. Where n=100..6000 (Hz freq.) for speaker. ON for piezo buzzer.    Option
-#define STATUS_BUZZER_DEFAULT         OFF //    OFF, ON default starts w/buzzer enabled.                                      Option
-#define STATUS_BUZZER_MEMORY          OFF //    OFF, ON to remember buzzer setting across power cycles.                       Option
+#define STATUS_BUZZER                2000 //    OFF, ON, n. Where n=100..6000 (Hz freq.) for speaker. ON for piezo buzzer.    Option
+#define STATUS_BUZZER_DEFAULT          ON //    OFF, ON default starts w/buzzer enabled.                                      Option
+#define STATUS_BUZZER_MEMORY           ON //    OFF, ON to remember buzzer setting across power cycles.                       Option
 
 // ST4 INTERFACE -------------------------------------------------- see https://onstep.groups.io/g/main/wiki/Configuration_Mount#ST4
 // *** It is up to you to verify the interface meets the electrical specifications of any connected device, use at your own risk ***
-#define ST4_INTERFACE                 OFF //    OFF, ON enables interface. <= 1X guides unless hand control mode.             Option
+#define ST4_INTERFACE                  ON //    OFF, ON enables interface. <= 1X guides unless hand control mode.             Option
                                           //         During goto btn press: aborts slew or continue meridian flip pause home
 #define ST4_HAND_CONTROL               ON //     ON, ON for hand controller special features and SHC support.                 Option
                                           //         Hold [E]+[W] btns >2s: Guide rate   [E]-  [W]+  [N] trk on/off [S] sync
@@ -198,10 +198,10 @@
 
 // PIER SIDE BEHAVIOUR --------------------------------------- see https://onstep.groups.io/g/main/wiki/Configuration_Mount#PIERSIDE
 #define MFLIP_SKIP_HOME               OFF //    OFF, ON Goto directly to the destination without visiting home position.      Option
-#define MFLIP_AUTOMATIC_DEFAULT       OFF //    OFF, ON Start with automatic meridian flips enabled.                          Option
-#define MFLIP_AUTOMATIC_MEMORY        OFF //    OFF, ON Remember automatic meridian flip setting across power cycles.         Option
+#define MFLIP_AUTOMATIC_DEFAULT        ON //    OFF, ON Start with automatic meridian flips enabled.                          Option
+#define MFLIP_AUTOMATIC_MEMORY         ON //    OFF, ON Remember automatic meridian flip setting across power cycles.         Option
 #define MFLIP_PAUSE_HOME_DEFAULT      OFF //    OFF, ON Start with meridian flip pause at home enabed.                        Infreq
-#define MFLIP_PAUSE_HOME_MEMORY       OFF //    OFF, ON Remember meridian flip pause at home setting across power cycles.     Infreq
+#define MFLIP_PAUSE_HOME_MEMORY        ON //    OFF, ON Remember meridian flip pause at home setting across power cycles.     Infreq
 
 #define PIER_SIDE_SYNC_CHANGE_SIDES   OFF //    OFF, ON Allows sync to change pier side, for GEM mounts.                      Option
 #define PIER_SIDE_PREFERRED_DEFAULT  BEST //   BEST, BEST Stays on current side if possible. EAST or WEST switch if possible. Option
